@@ -16,8 +16,6 @@ export default class GameLogic extends cc.Component {
     Cubes: cc.SpriteFrame[]=[];
     @property(cc.Prefab)
     BlankCube: cc.Prefab;
-    @property
-    Text:string='Hello';
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -36,8 +34,6 @@ export default class GameLogic extends cc.Component {
                 let node=cc.instantiate(this.BlankCube);
                 node.getComponent(cc.Sprite).spriteFrame=this.Cubes[field[i][j]];
                 node.parent=this.GridLayout;
-                //node.getComponent(cc.Sprite).spriteFrame=this.Cubes[field[i][j]];
-                //node.parent=this.GridLayout;
             }
         }
         //Пока что без проверки на начальные комбинации
