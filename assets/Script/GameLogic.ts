@@ -51,7 +51,7 @@ export default class GameLogic extends cc.Component {
                     field[i+2][j]=RandomExcept([field[i+2][j-1],field[i][j]]);
                 //Проверка квадратом
                 if(field[i][j]==field[i+1][j]&&field[i][j]==field[i][j+1]&&field[i][j]==field[i+1][j+1])
-                    field[i+1][j+1]==RandomExcept([field[i][j],field[i+1][j+2]]);
+                    field[i+1][j+1]=RandomExcept([field[i][j],field[i+1][j+2]]);
 
                 let node=cc.instantiate(this.BlankCube);
                 node.getComponent(cc.Sprite).spriteFrame=this.Cubes[field[i][j]];
