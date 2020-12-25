@@ -58,27 +58,6 @@ export default class GameLogic extends cc.Component {
                 node.parent=this.GridLayout;
             }
         }
-        /*
-        
-        //Горизонтальная проверка
-        cc.log("Горизонтальная");
-        for(let i=1;i<8;i++){
-            cc.log(field[i]);
-            for(let j=1;j<7;j++){
-                if(field[i][j]==field[i][j+1]&&field[i][j]==field[i][j+2])
-                field[i][j+2]=RandomExcept([field[i][j+2],field[i+1][j+2],field[i-1][j+2],field[i][j+3]]);
-                //cc.log(field[i][j]+" "+field[i][j+1]+" "+field[i][j+2]);
-            }
-        }
-        //Вертикальная проверка
-        cc.log("Вертикальная");
-        for(let i=1;i<6;i++){
-            cc.log(field[i]);
-            for(let j=1;j<9;j++){
-                if(field[i][j]==field[i+1][j]||field[i][j]==field[i+2][j])
-                field[i+2][j]=RandomExcept([field[i+2][j],field[i+2][j+1],field[i+2][j-1],field[i+3][j]]);
-            }
-        }*/
         
 }
 
