@@ -48,7 +48,6 @@ export default class GameLogic extends cc.Component {
         let BlockWidth:number=this.GridLayout.width/this.Width;
         let BlockHeight:number=this.GridLayout.height/this.Height;
         for(let i=2;i<this.Height+2;i++){
-            cc.log(field[i]);
             for(let j=2;j<this.Width+2;j++){
                 //Горизонтальная проверка
                 if(field[i][j]==field[i][j+1]&&field[i][j]==field[i][j+2])
@@ -65,9 +64,11 @@ export default class GameLogic extends cc.Component {
                 node.width=BlockWidth;
                 node.getComponent(cc.Sprite).spriteFrame=this.Cubes[field[i][j]];
                 node.parent=this.GridLayout;
+                node.setPosition(cc.v2(-this.Width+(BlockWidth*j)-(BlockWidth*2),-this.Height+(BlockHeight*i)-(BlockHeight*2)));
+                cc.log(node.position.x+" "+node.position.y);
             }
         }
-        
+        //this.GridLayout.getComponent(cc.Layout).active;   
 }
 
 }
