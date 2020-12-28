@@ -16,6 +16,11 @@ export default class GameLogic extends cc.Component {
     Cubes: cc.SpriteFrame[]=[];
     @property(cc.Prefab)
     BlankCube: cc.Prefab;
+    @property(cc.Integer)
+    Width=8;
+    @property(cc.Integer)
+    Height=7;
+
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -27,10 +32,10 @@ export default class GameLogic extends cc.Component {
     GenerateLayout(){
         let field:number[][]=[];
         //Генерируем числовое поле 7x8
-        for(let i=0;i<11;i++){
+        for(let i=0;i<this.Height+4;i++){
             field[i]=[];
-            for(let j=0;j<12;j++){
-                if(i<2||j<2||i>8||j>9)
+            for(let j=0;j<this.Width+4;j++){
+                if(i<2||j<2||i>this.Height+1||j>this.Width+1)
                 field[i][j]=9;
                 else
                 field[i][j]=RandomInt(0,4);
@@ -40,9 +45,11 @@ export default class GameLogic extends cc.Component {
         //Пока что без проверки на начальные комбинации
         //Потом не допускать чтобы в ряду и строке было более двух одинаковых чисел
         //А так же более 3 одинаковых элементов в одном квадрате 2 на 2
-        for(let i=2;i<9;i++){
+        let BlockWidth:number=this.GridLayout.width/this.Width;
+        let BlockHeight:number=this.GridLayout.height/this.Height;
+        for(let i=2;i<this.Height+2;i++){
             cc.log(field[i]);
-            for(let j=2;j<10;j++){
+            for(let j=2;j<this.Width+2;j++){
                 //Горизонтальная проверка
                 if(field[i][j]==field[i][j+1]&&field[i][j]==field[i][j+2])
                     field[i][j+2]=RandomExcept([field[i-1][j+2],field[i][j]]);
@@ -54,6 +61,8 @@ export default class GameLogic extends cc.Component {
                     field[i+1][j+1]=RandomExcept([field[i][j],field[i+1][j+2]]);
 
                 let node=cc.instantiate(this.BlankCube);
+                node.height=BlockHeight;
+                node.width=BlockWidth;
                 node.getComponent(cc.Sprite).spriteFrame=this.Cubes[field[i][j]];
                 node.parent=this.GridLayout;
             }
